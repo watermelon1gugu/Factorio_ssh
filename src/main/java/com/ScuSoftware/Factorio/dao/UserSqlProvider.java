@@ -28,16 +28,12 @@ public class UserSqlProvider {
         SQL sql = new SQL();
         sql.INSERT_INTO("user");
         
-        if (record.getUserName() != null) {
-            sql.VALUES("user_name", "#{userName,jdbcType=VARCHAR}");
+        if (record.getEmail() != null) {
+            sql.VALUES("email", "#{email,jdbcType=VARCHAR}");
         }
         
         if (record.getPassword() != null) {
             sql.VALUES("password", "#{password,jdbcType=VARCHAR}");
-        }
-        
-        if (record.getEmail() != null) {
-            sql.VALUES("email", "#{email,jdbcType=VARCHAR}");
         }
         
         if (record.getEnable() != null) {
@@ -66,12 +62,11 @@ public class UserSqlProvider {
     public String selectByExampleWithBLOBs(UserExample example) {
         SQL sql = new SQL();
         if (example != null && example.isDistinct()) {
-            sql.SELECT_DISTINCT("user_name");
+            sql.SELECT_DISTINCT("email");
         } else {
-            sql.SELECT("user_name");
+            sql.SELECT("email");
         }
         sql.SELECT("password");
-        sql.SELECT("email");
         sql.SELECT("enable");
         sql.SELECT("is_root");
         sql.SELECT("nick_name");
@@ -90,12 +85,11 @@ public class UserSqlProvider {
     public String selectByExample(UserExample example) {
         SQL sql = new SQL();
         if (example != null && example.isDistinct()) {
-            sql.SELECT_DISTINCT("user_name");
+            sql.SELECT_DISTINCT("email");
         } else {
-            sql.SELECT("user_name");
+            sql.SELECT("email");
         }
         sql.SELECT("password");
-        sql.SELECT("email");
         sql.SELECT("enable");
         sql.SELECT("is_root");
         sql.SELECT("nick_name");
@@ -117,16 +111,12 @@ public class UserSqlProvider {
         SQL sql = new SQL();
         sql.UPDATE("user");
         
-        if (record.getUserName() != null) {
-            sql.SET("user_name = #{record.userName,jdbcType=VARCHAR}");
+        if (record.getEmail() != null) {
+            sql.SET("email = #{record.email,jdbcType=VARCHAR}");
         }
         
         if (record.getPassword() != null) {
             sql.SET("password = #{record.password,jdbcType=VARCHAR}");
-        }
-        
-        if (record.getEmail() != null) {
-            sql.SET("email = #{record.email,jdbcType=VARCHAR}");
         }
         
         if (record.getEnable() != null) {
@@ -157,9 +147,8 @@ public class UserSqlProvider {
         SQL sql = new SQL();
         sql.UPDATE("user");
         
-        sql.SET("user_name = #{record.userName,jdbcType=VARCHAR}");
-        sql.SET("password = #{record.password,jdbcType=VARCHAR}");
         sql.SET("email = #{record.email,jdbcType=VARCHAR}");
+        sql.SET("password = #{record.password,jdbcType=VARCHAR}");
         sql.SET("enable = #{record.enable,jdbcType=BIT}");
         sql.SET("is_root = #{record.isRoot,jdbcType=BIT}");
         sql.SET("nick_name = #{record.nickName,jdbcType=VARCHAR}");
@@ -175,9 +164,8 @@ public class UserSqlProvider {
         SQL sql = new SQL();
         sql.UPDATE("user");
         
-        sql.SET("user_name = #{record.userName,jdbcType=VARCHAR}");
-        sql.SET("password = #{record.password,jdbcType=VARCHAR}");
         sql.SET("email = #{record.email,jdbcType=VARCHAR}");
+        sql.SET("password = #{record.password,jdbcType=VARCHAR}");
         sql.SET("enable = #{record.enable,jdbcType=BIT}");
         sql.SET("is_root = #{record.isRoot,jdbcType=BIT}");
         sql.SET("nick_name = #{record.nickName,jdbcType=VARCHAR}");
@@ -194,10 +182,6 @@ public class UserSqlProvider {
         
         if (record.getPassword() != null) {
             sql.SET("password = #{password,jdbcType=VARCHAR}");
-        }
-        
-        if (record.getEmail() != null) {
-            sql.SET("email = #{email,jdbcType=VARCHAR}");
         }
         
         if (record.getEnable() != null) {
@@ -220,7 +204,7 @@ public class UserSqlProvider {
             sql.SET("summary = #{summary,jdbcType=LONGVARCHAR}");
         }
         
-        sql.WHERE("user_name = #{userName,jdbcType=VARCHAR}");
+        sql.WHERE("email = #{email,jdbcType=VARCHAR}");
         
         return sql.toString();
     }

@@ -50,6 +50,8 @@ public class RegisterRequest {
         user.setEmail(this.email);
         user.setNickName(this.nickName);
         user.setPassword(this.password);
+        user.setEnable(true);
+        user.setIsRoot(false);
         return user;
     }
 }

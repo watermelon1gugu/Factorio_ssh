@@ -7,7 +7,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 import org.springframework.stereotype.Component;
-
 @Component
 @Mapper
 public interface MemberMapper {

@@ -1,5 +1,6 @@
 package com.ScuSoftware.Factorio.controller;
 import com.ScuSoftware.Factorio.dao.UserMapper;
+import com.ScuSoftware.Factorio.dto.LoginRequest;
 import com.ScuSoftware.Factorio.model.User;
 import org.apache.commons.lang3.RandomStringUtils;
 import com.ScuSoftware.Factorio.dto.RegisterRequest;
@@ -24,20 +25,23 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping(value = "get")
-    public String getUsers() {
-        return "Hello Spring Security";
-    }
-
     @PostMapping(value = "register")
     public Response register(@RequestBody RegisterRequest registerRequest, HttpSession session) {
         if(session.getAttribute("_code")!=null&&session.getAttribute("_code").equals(registerRequest.getCheckCode())){
             User user = registerRequest.formatToUser();
-
-            return new Response(200,"注册成功");
-        }else return new Response(500,"请输入验证码");
+            if(userService.register(user)!=0) {
+                return new Response<>(200, "注册成功");
+            }else return new Response<>(200,"注册失败");
+        }else return new Response<>(501,"验证码错误");
     }
-    @RequestMapping(value = "authCode", method = RequestMethod.GET)
+    @PostMapping(value = "login")
+    public Response login(@RequestBody LoginRequest loginRequest,HttpSession session){
+        if(session.getAttribute("_code")!=null&&session.getAttribute("_code").equals(loginRequest.getCheckCode())){
+            return new Response<>(200,"登录成功");
+        }else return new Response<>(500,"登录失败");
+    }
+
+    @GetMapping(value = "authCode")
     public void getAuthCode(HttpSession session, HttpServletResponse response) throws IOException {
         response.setContentType("image/jpeg");
         String verifyCode = RandomStringUtils.randomNumeric(4);

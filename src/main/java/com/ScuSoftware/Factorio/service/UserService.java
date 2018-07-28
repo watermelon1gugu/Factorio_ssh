@@ -6,6 +6,8 @@ public interface UserService {
 
      void print(int a);
 
-     User getUserByUsername(String username);
 
+     User getUserByEmail(String email);
+
+     int register(User user);
 }
