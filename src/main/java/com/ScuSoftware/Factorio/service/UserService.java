@@ -1,8 +1,11 @@
 package com.ScuSoftware.Factorio.service;
 
-import com.ScuSoftware.Factorio.dao.UserMapper;
+import com.ScuSoftware.Factorio.model.User;
 
 public interface UserService {
 
-    public void print(int a);
+     void print(int a);
+
+     User getUserByUsername(String username);
+
 }

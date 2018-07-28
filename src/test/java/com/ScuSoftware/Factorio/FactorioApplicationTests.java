@@ -1,8 +1,8 @@
 package com.ScuSoftware.Factorio;
 
-import com.ScuSoftware.Factorio.dao.UserMapper;
-
-import com.ScuSoftware.Factorio.service.Impl.UserServiceImpl;
+import com.ScuSoftware.Factorio.dao.MemberMapper;
+import com.ScuSoftware.Factorio.model.Member;
+import com.ScuSoftware.Factorio.model.User;
 import com.ScuSoftware.Factorio.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,9 +16,17 @@ public class FactorioApplicationTests {
 
 	@Autowired
 	private UserService userServiceImpl;
+	@Autowired
+	private MemberMapper memberMapper;
 	@Test
 	public void contextLoads() {
-		userServiceImpl.print(1);
+		User user;
+		user = userServiceImpl.getUserByUsername("Arch Yi");
+		Member member = memberMapper.selectByPrimaryKey(user.getMemberId());
+
+		System.out.printf("name:%s\n" +
+				"id:%s\n",user.getUserName(),member.getStudentId());
+
 	}
 
 }

@@ -8,8 +8,17 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+    
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // Configure HttpSecurity as needed (e.g. enable http basic).
+        http
+                .authorizeRequests()
+                .antMatchers("/resources/**", "/signup", "/about","/user").permitAll()
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/db/**").access("hasRole('ADMIN') and hasRole('DBA')")
+                .anyRequest().authenticated()
+                .and()
+                // ...
+                .formLogin();
     }
 }
