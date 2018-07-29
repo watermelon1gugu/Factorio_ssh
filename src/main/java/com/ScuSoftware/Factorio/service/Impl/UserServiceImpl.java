@@ -11,16 +11,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
     @Override
-    public void print(int a) {
-       /* User user = userMapper.selectByPrimaryKey(a);
-        if(user!=null)
-        System.out.println(user.getUserName());
-        else System.out.println("有问题");*/
-
-    }
-
-    @Override
-    public User getUserByEmail(String email) {
+    public User getUserByID(int id) {
 /*        UserExample userExample = new UserExample();
         UserExample.Criteria cri = userExample.createCriteria();
         if (null != username) {
@@ -28,7 +19,7 @@ public class UserServiceImpl implements UserService {
         }
         List<User> userList = userMapper.selectByExample(userExample);
       //  return userList.get(0);*/
-        return userMapper.selectByPrimaryKey(email);
+        return userMapper.selectByPrimaryKey(id);
     }
 
     @Override

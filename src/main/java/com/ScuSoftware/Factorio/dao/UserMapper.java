@@ -19,17 +19,19 @@ public interface UserMapper {
 
     @Delete({
         "delete from user",
-        "where email = #{email,jdbcType=VARCHAR}"
+        "where id = #{id,jdbcType=INTEGER}"
     })
-    int deleteByPrimaryKey(String email);
+    int deleteByPrimaryKey(Integer id);
 
     @Insert({
-        "insert into user (email, password, ",
-        "enable, is_root, nick_name, ",
-        "member_id, summary)",
-        "values (#{email,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, ",
-        "#{enable,jdbcType=BIT}, #{isRoot,jdbcType=BIT}, #{nickName,jdbcType=VARCHAR}, ",
-        "#{memberId,jdbcType=INTEGER}, #{summary,jdbcType=LONGVARCHAR})"
+        "insert into user (id, password, ",
+        "email, enable, is_root, ",
+        "nick_name, student_id, ",
+        "summary)",
+        "values (#{id,jdbcType=INTEGER}, #{password,jdbcType=VARCHAR}, ",
+        "#{email,jdbcType=VARCHAR}, #{enable,jdbcType=BIT}, #{isRoot,jdbcType=BIT}, ",
+        "#{nickName,jdbcType=VARCHAR}, #{studentId,jdbcType=INTEGER}, ",
+        "#{summary,jdbcType=LONGVARCHAR})"
     })
     int insert(User record);
 
@@ -38,43 +40,46 @@ public interface UserMapper {
 
     @SelectProvider(type=UserSqlProvider.class, method="selectByExampleWithBLOBs")
     @Results({
-        @Result(column="email", property="email", jdbcType=JdbcType.VARCHAR, id=true),
+        @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
         @Result(column="password", property="password", jdbcType=JdbcType.VARCHAR),
+        @Result(column="email", property="email", jdbcType=JdbcType.VARCHAR),
         @Result(column="enable", property="enable", jdbcType=JdbcType.BIT),
         @Result(column="is_root", property="isRoot", jdbcType=JdbcType.BIT),
         @Result(column="nick_name", property="nickName", jdbcType=JdbcType.VARCHAR),
-        @Result(column="member_id", property="memberId", jdbcType=JdbcType.INTEGER),
+        @Result(column="student_id", property="studentId", jdbcType=JdbcType.INTEGER),
         @Result(column="summary", property="summary", jdbcType=JdbcType.LONGVARCHAR)
     })
     List<User> selectByExampleWithBLOBs(UserExample example);
 
     @SelectProvider(type=UserSqlProvider.class, method="selectByExample")
     @Results({
-        @Result(column="email", property="email", jdbcType=JdbcType.VARCHAR, id=true),
+        @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
         @Result(column="password", property="password", jdbcType=JdbcType.VARCHAR),
+        @Result(column="email", property="email", jdbcType=JdbcType.VARCHAR),
         @Result(column="enable", property="enable", jdbcType=JdbcType.BIT),
         @Result(column="is_root", property="isRoot", jdbcType=JdbcType.BIT),
         @Result(column="nick_name", property="nickName", jdbcType=JdbcType.VARCHAR),
-        @Result(column="member_id", property="memberId", jdbcType=JdbcType.INTEGER)
+        @Result(column="student_id", property="studentId", jdbcType=JdbcType.INTEGER)
     })
     List<User> selectByExample(UserExample example);
 
     @Select({
         "select",
-        "email, password, enable, is_root, nick_name, member_id, summary",
+        "id, password, email, enable, is_root, nick_name, student_id, summary",
         "from user",
-        "where email = #{email,jdbcType=VARCHAR}"
+        "where id = #{id,jdbcType=INTEGER}"
     })
     @Results({
-        @Result(column="email", property="email", jdbcType=JdbcType.VARCHAR, id=true),
+        @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
         @Result(column="password", property="password", jdbcType=JdbcType.VARCHAR),
+        @Result(column="email", property="email", jdbcType=JdbcType.VARCHAR),
         @Result(column="enable", property="enable", jdbcType=JdbcType.BIT),
         @Result(column="is_root", property="isRoot", jdbcType=JdbcType.BIT),
         @Result(column="nick_name", property="nickName", jdbcType=JdbcType.VARCHAR),
-        @Result(column="member_id", property="memberId", jdbcType=JdbcType.INTEGER),
+        @Result(column="student_id", property="studentId", jdbcType=JdbcType.INTEGER),
         @Result(column="summary", property="summary", jdbcType=JdbcType.LONGVARCHAR)
     })
-    User selectByPrimaryKey(String email);
+    User selectByPrimaryKey(Integer id);
 
     @UpdateProvider(type=UserSqlProvider.class, method="updateByExampleSelective")
     int updateByExampleSelective(@Param("record") User record, @Param("example") UserExample example);
@@ -91,23 +96,25 @@ public interface UserMapper {
     @Update({
         "update user",
         "set password = #{password,jdbcType=VARCHAR},",
+          "email = #{email,jdbcType=VARCHAR},",
           "enable = #{enable,jdbcType=BIT},",
           "is_root = #{isRoot,jdbcType=BIT},",
           "nick_name = #{nickName,jdbcType=VARCHAR},",
-          "member_id = #{memberId,jdbcType=INTEGER},",
+          "student_id = #{studentId,jdbcType=INTEGER},",
           "summary = #{summary,jdbcType=LONGVARCHAR}",
-        "where email = #{email,jdbcType=VARCHAR}"
+        "where id = #{id,jdbcType=INTEGER}"
     })
     int updateByPrimaryKeyWithBLOBs(User record);
 
     @Update({
         "update user",
         "set password = #{password,jdbcType=VARCHAR},",
+          "email = #{email,jdbcType=VARCHAR},",
           "enable = #{enable,jdbcType=BIT},",
           "is_root = #{isRoot,jdbcType=BIT},",
           "nick_name = #{nickName,jdbcType=VARCHAR},",
-          "member_id = #{memberId,jdbcType=INTEGER}",
-        "where email = #{email,jdbcType=VARCHAR}"
+          "student_id = #{studentId,jdbcType=INTEGER}",
+        "where id = #{id,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(User record);
 }

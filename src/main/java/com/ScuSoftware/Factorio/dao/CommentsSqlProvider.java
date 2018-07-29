@@ -1,58 +1,88 @@
 package com.ScuSoftware.Factorio.dao;
 
-import com.ScuSoftware.Factorio.model.Member;
-import com.ScuSoftware.Factorio.model.MemberExample.Criteria;
-import com.ScuSoftware.Factorio.model.MemberExample.Criterion;
-import com.ScuSoftware.Factorio.model.MemberExample;
+import com.ScuSoftware.Factorio.model.Comments;
+import com.ScuSoftware.Factorio.model.CommentsExample.Criteria;
+import com.ScuSoftware.Factorio.model.CommentsExample.Criterion;
+import com.ScuSoftware.Factorio.model.CommentsExample;
 import java.util.List;
 import java.util.Map;
 import org.apache.ibatis.jdbc.SQL;
 
-public class MemberSqlProvider {
+public class CommentsSqlProvider {
 
-    public String countByExample(MemberExample example) {
+    public String countByExample(CommentsExample example) {
         SQL sql = new SQL();
-        sql.SELECT("count(*)").FROM("member");
+        sql.SELECT("count(*)").FROM("comments");
         applyWhere(sql, example, false);
         return sql.toString();
     }
 
-    public String deleteByExample(MemberExample example) {
+    public String deleteByExample(CommentsExample example) {
         SQL sql = new SQL();
-        sql.DELETE_FROM("member");
+        sql.DELETE_FROM("comments");
         applyWhere(sql, example, false);
         return sql.toString();
     }
 
-    public String insertSelective(Member record) {
+    public String insertSelective(Comments record) {
         SQL sql = new SQL();
-        sql.INSERT_INTO("member");
+        sql.INSERT_INTO("comments");
         
-        if (record.getStudentId() != null) {
-            sql.VALUES("student_id", "#{studentId,jdbcType=VARCHAR}");
+        if (record.getId() != null) {
+            sql.VALUES("id", "#{id,jdbcType=INTEGER}");
         }
         
-        if (record.getSex() != null) {
-            sql.VALUES("sex", "#{sex,jdbcType=BIT}");
+        if (record.getCommentsDate() != null) {
+            sql.VALUES("comments_date", "#{commentsDate,jdbcType=DATE}");
         }
         
-        if (record.getName() != null) {
-            sql.VALUES("name", "#{name,jdbcType=VARCHAR}");
+        if (record.getUserId() != null) {
+            sql.VALUES("user_id", "#{userId,jdbcType=INTEGER}");
+        }
+        
+        if (record.getTitle() != null) {
+            sql.VALUES("title", "#{title,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getContent() != null) {
+            sql.VALUES("content", "#{content,jdbcType=LONGVARCHAR}");
         }
         
         return sql.toString();
     }
 
-    public String selectByExample(MemberExample example) {
+    public String selectByExampleWithBLOBs(CommentsExample example) {
         SQL sql = new SQL();
         if (example != null && example.isDistinct()) {
-            sql.SELECT_DISTINCT("student_id");
+            sql.SELECT_DISTINCT("id");
         } else {
-            sql.SELECT("student_id");
+            sql.SELECT("id");
         }
-        sql.SELECT("sex");
-        sql.SELECT("name");
-        sql.FROM("member");
+        sql.SELECT("comments_date");
+        sql.SELECT("user_id");
+        sql.SELECT("title");
+        sql.SELECT("content");
+        sql.FROM("comments");
+        applyWhere(sql, example, false);
+        
+        if (example != null && example.getOrderByClause() != null) {
+            sql.ORDER_BY(example.getOrderByClause());
+        }
+        
+        return sql.toString();
+    }
+
+    public String selectByExample(CommentsExample example) {
+        SQL sql = new SQL();
+        if (example != null && example.isDistinct()) {
+            sql.SELECT_DISTINCT("id");
+        } else {
+            sql.SELECT("id");
+        }
+        sql.SELECT("comments_date");
+        sql.SELECT("user_id");
+        sql.SELECT("title");
+        sql.FROM("comments");
         applyWhere(sql, example, false);
         
         if (example != null && example.getOrderByClause() != null) {
@@ -63,59 +93,91 @@ public class MemberSqlProvider {
     }
 
     public String updateByExampleSelective(Map<String, Object> parameter) {
-        Member record = (Member) parameter.get("record");
-        MemberExample example = (MemberExample) parameter.get("example");
+        Comments record = (Comments) parameter.get("record");
+        CommentsExample example = (CommentsExample) parameter.get("example");
         
         SQL sql = new SQL();
-        sql.UPDATE("member");
+        sql.UPDATE("comments");
         
-        if (record.getStudentId() != null) {
-            sql.SET("student_id = #{record.studentId,jdbcType=VARCHAR}");
+        if (record.getId() != null) {
+            sql.SET("id = #{record.id,jdbcType=INTEGER}");
         }
         
-        if (record.getSex() != null) {
-            sql.SET("sex = #{record.sex,jdbcType=BIT}");
+        if (record.getCommentsDate() != null) {
+            sql.SET("comments_date = #{record.commentsDate,jdbcType=DATE}");
         }
         
-        if (record.getName() != null) {
-            sql.SET("name = #{record.name,jdbcType=VARCHAR}");
+        if (record.getUserId() != null) {
+            sql.SET("user_id = #{record.userId,jdbcType=INTEGER}");
         }
         
+        if (record.getTitle() != null) {
+            sql.SET("title = #{record.title,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getContent() != null) {
+            sql.SET("content = #{record.content,jdbcType=LONGVARCHAR}");
+        }
+        
+        applyWhere(sql, example, true);
+        return sql.toString();
+    }
+
+    public String updateByExampleWithBLOBs(Map<String, Object> parameter) {
+        SQL sql = new SQL();
+        sql.UPDATE("comments");
+        
+        sql.SET("id = #{record.id,jdbcType=INTEGER}");
+        sql.SET("comments_date = #{record.commentsDate,jdbcType=DATE}");
+        sql.SET("user_id = #{record.userId,jdbcType=INTEGER}");
+        sql.SET("title = #{record.title,jdbcType=VARCHAR}");
+        sql.SET("content = #{record.content,jdbcType=LONGVARCHAR}");
+        
+        CommentsExample example = (CommentsExample) parameter.get("example");
         applyWhere(sql, example, true);
         return sql.toString();
     }
 
     public String updateByExample(Map<String, Object> parameter) {
         SQL sql = new SQL();
-        sql.UPDATE("member");
+        sql.UPDATE("comments");
         
-        sql.SET("student_id = #{record.studentId,jdbcType=VARCHAR}");
-        sql.SET("sex = #{record.sex,jdbcType=BIT}");
-        sql.SET("name = #{record.name,jdbcType=VARCHAR}");
+        sql.SET("id = #{record.id,jdbcType=INTEGER}");
+        sql.SET("comments_date = #{record.commentsDate,jdbcType=DATE}");
+        sql.SET("user_id = #{record.userId,jdbcType=INTEGER}");
+        sql.SET("title = #{record.title,jdbcType=VARCHAR}");
         
-        MemberExample example = (MemberExample) parameter.get("example");
+        CommentsExample example = (CommentsExample) parameter.get("example");
         applyWhere(sql, example, true);
         return sql.toString();
     }
 
-    public String updateByPrimaryKeySelective(Member record) {
+    public String updateByPrimaryKeySelective(Comments record) {
         SQL sql = new SQL();
-        sql.UPDATE("member");
+        sql.UPDATE("comments");
         
-        if (record.getSex() != null) {
-            sql.SET("sex = #{sex,jdbcType=BIT}");
+        if (record.getCommentsDate() != null) {
+            sql.SET("comments_date = #{commentsDate,jdbcType=DATE}");
         }
         
-        if (record.getName() != null) {
-            sql.SET("name = #{name,jdbcType=VARCHAR}");
+        if (record.getUserId() != null) {
+            sql.SET("user_id = #{userId,jdbcType=INTEGER}");
         }
         
-        sql.WHERE("student_id = #{studentId,jdbcType=VARCHAR}");
+        if (record.getTitle() != null) {
+            sql.SET("title = #{title,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getContent() != null) {
+            sql.SET("content = #{content,jdbcType=LONGVARCHAR}");
+        }
+        
+        sql.WHERE("id = #{id,jdbcType=INTEGER}");
         
         return sql.toString();
     }
 
-    protected void applyWhere(SQL sql, MemberExample example, boolean includeExamplePhrase) {
+    protected void applyWhere(SQL sql, CommentsExample example, boolean includeExamplePhrase) {
         if (example == null) {
             return;
         }

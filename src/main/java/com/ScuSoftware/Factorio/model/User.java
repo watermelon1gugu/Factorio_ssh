@@ -1,9 +1,11 @@
 package com.ScuSoftware.Factorio.model;
 
 public class User {
-    private String email;
+    private Integer id;
 
     private String password;
+
+    private String email;
 
     private Boolean enable;
 
@@ -11,16 +13,16 @@ public class User {
 
     private String nickName;
 
-    private Integer memberId;
+    private Integer studentId;
 
     private String summary;
 
-    public String getEmail() {
-        return email;
+    public Integer getId() {
+        return id;
     }
 
-    public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getPassword() {
@@ -29,6 +31,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email == null ? null : email.trim();
     }
 
     public Boolean getEnable() {
@@ -55,12 +65,12 @@ public class User {
         this.nickName = nickName == null ? null : nickName.trim();
     }
 
-    public Integer getMemberId() {
-        return memberId;
+    public Integer getStudentId() {
+        return studentId;
     }
 
-    public void setMemberId(Integer memberId) {
-        this.memberId = memberId;
+    public void setStudentId(Integer studentId) {
+        this.studentId = studentId;
     }
 
     public String getSummary() {

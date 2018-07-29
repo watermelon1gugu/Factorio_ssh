@@ -4,10 +4,8 @@ import com.ScuSoftware.Factorio.model.User;
 
 public interface UserService {
 
-     void print(int a);
 
-
-     User getUserByEmail(String email);
+     User getUserByID(int id);
 
      int register(User user);
 }

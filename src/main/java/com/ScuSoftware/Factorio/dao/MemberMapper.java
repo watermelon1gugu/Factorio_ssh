@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 import org.springframework.stereotype.Component;
+
 @Component
 @Mapper
 public interface MemberMapper {
@@ -18,15 +19,15 @@ public interface MemberMapper {
 
     @Delete({
         "delete from member",
-        "where member_id = #{memberId,jdbcType=INTEGER}"
+        "where student_id = #{studentId,jdbcType=VARCHAR}"
     })
-    int deleteByPrimaryKey(Integer memberId);
+    int deleteByPrimaryKey(String studentId);
 
     @Insert({
-        "insert into member (member_id, student_id, ",
-        "sex, name)",
-        "values (#{memberId,jdbcType=INTEGER}, #{studentId,jdbcType=VARCHAR}, ",
-        "#{sex,jdbcType=BIT}, #{name,jdbcType=VARCHAR})"
+        "insert into member (student_id, sex, ",
+        "name)",
+        "values (#{studentId,jdbcType=VARCHAR}, #{sex,jdbcType=BIT}, ",
+        "#{name,jdbcType=VARCHAR})"
     })
     int insert(Member record);
 
@@ -35,8 +36,7 @@ public interface MemberMapper {
 
     @SelectProvider(type=MemberSqlProvider.class, method="selectByExample")
     @Results({
-        @Result(column="member_id", property="memberId", jdbcType=JdbcType.INTEGER, id=true),
-        @Result(column="student_id", property="studentId", jdbcType=JdbcType.VARCHAR),
+        @Result(column="student_id", property="studentId", jdbcType=JdbcType.VARCHAR, id=true),
         @Result(column="sex", property="sex", jdbcType=JdbcType.BIT),
         @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR)
     })
@@ -44,17 +44,16 @@ public interface MemberMapper {
 
     @Select({
         "select",
-        "member_id, student_id, sex, name",
+        "student_id, sex, name",
         "from member",
-        "where member_id = #{memberId,jdbcType=INTEGER}"
+        "where student_id = #{studentId,jdbcType=VARCHAR}"
     })
     @Results({
-        @Result(column="member_id", property="memberId", jdbcType=JdbcType.INTEGER, id=true),
-        @Result(column="student_id", property="studentId", jdbcType=JdbcType.VARCHAR),
+        @Result(column="student_id", property="studentId", jdbcType=JdbcType.VARCHAR, id=true),
         @Result(column="sex", property="sex", jdbcType=JdbcType.BIT),
         @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR)
     })
-    Member selectByPrimaryKey(Integer memberId);
+    Member selectByPrimaryKey(String studentId);
 
     @UpdateProvider(type=MemberSqlProvider.class, method="updateByExampleSelective")
     int updateByExampleSelective(@Param("record") Member record, @Param("example") MemberExample example);
@@ -67,10 +66,9 @@ public interface MemberMapper {
 
     @Update({
         "update member",
-        "set student_id = #{studentId,jdbcType=VARCHAR},",
-          "sex = #{sex,jdbcType=BIT},",
+        "set sex = #{sex,jdbcType=BIT},",
           "name = #{name,jdbcType=VARCHAR}",
-        "where member_id = #{memberId,jdbcType=INTEGER}"
+        "where student_id = #{studentId,jdbcType=VARCHAR}"
     })
     int updateByPrimaryKey(Member record);
 }

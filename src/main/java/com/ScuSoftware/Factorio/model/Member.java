@@ -1,21 +1,11 @@
 package com.ScuSoftware.Factorio.model;
 
 public class Member {
-    private Integer memberId;
-
     private String studentId;
 
     private Boolean sex;
 
     private String name;
-
-    public Integer getMemberId() {
-        return memberId;
-    }
-
-    public void setMemberId(Integer memberId) {
-        this.memberId = memberId;
-    }
 
     public String getStudentId() {
         return studentId;
