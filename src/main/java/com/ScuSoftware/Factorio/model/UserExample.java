@@ -504,52 +504,62 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdEqualTo(Integer value) {
+        public Criteria andStudentIdEqualTo(String value) {
             addCriterion("student_id =", value, "studentId");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdNotEqualTo(Integer value) {
+        public Criteria andStudentIdNotEqualTo(String value) {
             addCriterion("student_id <>", value, "studentId");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdGreaterThan(Integer value) {
+        public Criteria andStudentIdGreaterThan(String value) {
             addCriterion("student_id >", value, "studentId");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdGreaterThanOrEqualTo(Integer value) {
+        public Criteria andStudentIdGreaterThanOrEqualTo(String value) {
             addCriterion("student_id >=", value, "studentId");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdLessThan(Integer value) {
+        public Criteria andStudentIdLessThan(String value) {
             addCriterion("student_id <", value, "studentId");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdLessThanOrEqualTo(Integer value) {
+        public Criteria andStudentIdLessThanOrEqualTo(String value) {
             addCriterion("student_id <=", value, "studentId");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdIn(List<Integer> values) {
+        public Criteria andStudentIdLike(String value) {
+            addCriterion("student_id like", value, "studentId");
+            return (Criteria) this;
+        }
+
+        public Criteria andStudentIdNotLike(String value) {
+            addCriterion("student_id not like", value, "studentId");
+            return (Criteria) this;
+        }
+
+        public Criteria andStudentIdIn(List<String> values) {
             addCriterion("student_id in", values, "studentId");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdNotIn(List<Integer> values) {
+        public Criteria andStudentIdNotIn(List<String> values) {
             addCriterion("student_id not in", values, "studentId");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdBetween(Integer value1, Integer value2) {
+        public Criteria andStudentIdBetween(String value1, String value2) {
             addCriterion("student_id between", value1, value2, "studentId");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdNotBetween(Integer value1, Integer value2) {
+        public Criteria andStudentIdNotBetween(String value1, String value2) {
             addCriterion("student_id not between", value1, value2, "studentId");
             return (Criteria) this;
         }

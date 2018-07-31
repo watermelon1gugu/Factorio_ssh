@@ -53,7 +53,7 @@ public class UserSqlProvider {
         }
         
         if (record.getStudentId() != null) {
-            sql.VALUES("student_id", "#{studentId,jdbcType=INTEGER}");
+            sql.VALUES("student_id", "#{studentId,jdbcType=VARCHAR}");
         }
         
         if (record.getSummary() != null) {
@@ -142,7 +142,7 @@ public class UserSqlProvider {
         }
         
         if (record.getStudentId() != null) {
-            sql.SET("student_id = #{record.studentId,jdbcType=INTEGER}");
+            sql.SET("student_id = #{record.studentId,jdbcType=VARCHAR}");
         }
         
         if (record.getSummary() != null) {
@@ -163,7 +163,7 @@ public class UserSqlProvider {
         sql.SET("enable = #{record.enable,jdbcType=BIT}");
         sql.SET("is_root = #{record.isRoot,jdbcType=BIT}");
         sql.SET("nick_name = #{record.nickName,jdbcType=VARCHAR}");
-        sql.SET("student_id = #{record.studentId,jdbcType=INTEGER}");
+        sql.SET("student_id = #{record.studentId,jdbcType=VARCHAR}");
         sql.SET("summary = #{record.summary,jdbcType=LONGVARCHAR}");
         
         UserExample example = (UserExample) parameter.get("example");
@@ -181,7 +181,7 @@ public class UserSqlProvider {
         sql.SET("enable = #{record.enable,jdbcType=BIT}");
         sql.SET("is_root = #{record.isRoot,jdbcType=BIT}");
         sql.SET("nick_name = #{record.nickName,jdbcType=VARCHAR}");
-        sql.SET("student_id = #{record.studentId,jdbcType=INTEGER}");
+        sql.SET("student_id = #{record.studentId,jdbcType=VARCHAR}");
         
         UserExample example = (UserExample) parameter.get("example");
         applyWhere(sql, example, true);
@@ -213,7 +213,7 @@ public class UserSqlProvider {
         }
         
         if (record.getStudentId() != null) {
-            sql.SET("student_id = #{studentId,jdbcType=INTEGER}");
+            sql.SET("student_id = #{studentId,jdbcType=VARCHAR}");
         }
         
         if (record.getSummary() != null) {

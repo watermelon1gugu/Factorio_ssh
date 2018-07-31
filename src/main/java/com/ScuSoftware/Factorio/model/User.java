@@ -1,8 +1,13 @@
 package com.ScuSoftware.Factorio.model;
 
-public class User {
-    private Integer id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class User {
+
+    private Integer id;
+    @JsonIgnore
     private String password;
 
     private String email;
@@ -13,7 +18,7 @@ public class User {
 
     private String nickName;
 
-    private Integer studentId;
+    private String studentId;
 
     private String summary;
 
@@ -65,12 +70,12 @@ public class User {
         this.nickName = nickName == null ? null : nickName.trim();
     }
 
-    public Integer getStudentId() {
+    public String getStudentId() {
         return studentId;
     }
 
-    public void setStudentId(Integer studentId) {
-        this.studentId = studentId;
+    public void setStudentId(String studentId) {
+        this.studentId = studentId == null ? null : studentId.trim();
     }
 
     public String getSummary() {

@@ -1,6 +1,9 @@
 package com.ScuSoftware.Factorio.dto;
 
+import com.ScuSoftware.Factorio.model.Comments;
 import com.fasterxml.jackson.annotation.JsonInclude;
+
+import java.util.Date;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CommentsRequest {
@@ -8,7 +11,7 @@ public class CommentsRequest {
 
     private String content;
 
-    private int user_id;
+    private int userID;
 
     public String getTitle() {
         return title;
@@ -22,15 +25,26 @@ public class CommentsRequest {
         return content;
     }
 
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
     public void setContent(String content) {
         this.content = content;
     }
 
-    public int getUser_id() {
-        return user_id;
-    }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+
+    public Comments formatToComments(){
+        Comments comments = new Comments();
+        comments.setTitle(this.title);
+        comments.setContent(this.content);
+        comments.setUserId(this.userID);
+        comments.setCommentsDate(new Date());
+        return comments;
     }
 }
