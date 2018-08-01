@@ -34,14 +34,6 @@ public class CommentsServiceImpl implements CommentsService {
     }
 
     @Override
-    public List<Comments> getCommentsByTitle(String title) {
-        CommentsExample commentsExample = new CommentsExample();
-        CommentsExample.Criteria cri = commentsExample.createCriteria();
-        cri.andTitleLike(title);
-        return commentsMapper.selectByExample(commentsExample);
-    }
-
-    @Override
     public Comments getCommentsByID(int id) {
         return commentsMapper.selectByPrimaryKey(id);
     }

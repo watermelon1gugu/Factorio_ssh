@@ -35,44 +35,14 @@ public class FactorioApplicationTests {
 	private MemberMapper memberMapper;
 	@Autowired
 	private UserMapper userMapper;
-	@Transactional
-	public int test(){
-		Member member = new Member();
-		member = memberMapper.selectByPrimaryKey("2016141502067");
-		Comments comments = new Comments();
-		comments.setCommentsDate(new Date());
-		comments.setUserId(123141);
-		comments.setTitle("w1w1w1");
-		comments.setContent("我我我我");
-		System.out.println("This is");
-		try {
-			return commentsMapper.insert(comments) * memberMapper.insert(member);
-		}catch (Exception e){
-			throw e;
-		}
-	}
+
 	@Test
 	public void contextLoads() {
-		RegisterRequest registerRequest = new RegisterRequest();
-		registerRequest.setEmail("843874092@qq.com");
-		registerRequest.setisMember(true);
-		registerRequest.setName("陈益");
-		registerRequest.setNickName("西瓜");
-		registerRequest.setPassword("chenyi456");
-		registerRequest.setStudentID("2016141502067");
-		registerRequest.setSex(true);
-		User user = registerRequest.formatToUser();
-		Member member = registerRequest.formatToMember();
-		try {
-			userService.register(user,member);
-            userService.register(user,member);
-			System.out.println("sssssssssssssss");
-
-		}catch (RuntimeException e){
-			System.out.println("Message:");
-			System.out.println(e.getMessage());
-
+		List<Comments> list = commentsMapper.selectByExampleWithBLOBs(commentsExample);
+		for(Comments comments:list){
+			System.out.println("id:"+comments.getId()+"content:"+comments.getContent());
 		}
+
 	}
 
 

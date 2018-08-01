@@ -11,8 +11,6 @@ public interface CommentsService {
 
     List<Comments> getAllComments();
 
-    List<Comments> getCommentsByTitle(String title);
-
     Comments getCommentsByID(int id);
 
 
