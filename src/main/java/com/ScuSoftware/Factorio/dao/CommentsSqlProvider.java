@@ -40,10 +40,6 @@ public class CommentsSqlProvider {
             sql.VALUES("user_id", "#{userId,jdbcType=INTEGER}");
         }
         
-        if (record.getTitle() != null) {
-            sql.VALUES("title", "#{title,jdbcType=VARCHAR}");
-        }
-        
         if (record.getContent() != null) {
             sql.VALUES("content", "#{content,jdbcType=LONGVARCHAR}");
         }
@@ -60,7 +56,6 @@ public class CommentsSqlProvider {
         }
         sql.SELECT("comments_date");
         sql.SELECT("user_id");
-        sql.SELECT("title");
         sql.SELECT("content");
         sql.FROM("comments");
         applyWhere(sql, example, false);
@@ -81,7 +76,6 @@ public class CommentsSqlProvider {
         }
         sql.SELECT("comments_date");
         sql.SELECT("user_id");
-        sql.SELECT("title");
         sql.FROM("comments");
         applyWhere(sql, example, false);
         
@@ -111,10 +105,6 @@ public class CommentsSqlProvider {
             sql.SET("user_id = #{record.userId,jdbcType=INTEGER}");
         }
         
-        if (record.getTitle() != null) {
-            sql.SET("title = #{record.title,jdbcType=VARCHAR}");
-        }
-        
         if (record.getContent() != null) {
             sql.SET("content = #{record.content,jdbcType=LONGVARCHAR}");
         }
@@ -130,7 +120,6 @@ public class CommentsSqlProvider {
         sql.SET("id = #{record.id,jdbcType=INTEGER}");
         sql.SET("comments_date = #{record.commentsDate,jdbcType=DATE}");
         sql.SET("user_id = #{record.userId,jdbcType=INTEGER}");
-        sql.SET("title = #{record.title,jdbcType=VARCHAR}");
         sql.SET("content = #{record.content,jdbcType=LONGVARCHAR}");
         
         CommentsExample example = (CommentsExample) parameter.get("example");
@@ -145,7 +134,6 @@ public class CommentsSqlProvider {
         sql.SET("id = #{record.id,jdbcType=INTEGER}");
         sql.SET("comments_date = #{record.commentsDate,jdbcType=DATE}");
         sql.SET("user_id = #{record.userId,jdbcType=INTEGER}");
-        sql.SET("title = #{record.title,jdbcType=VARCHAR}");
         
         CommentsExample example = (CommentsExample) parameter.get("example");
         applyWhere(sql, example, true);
@@ -162,10 +150,6 @@ public class CommentsSqlProvider {
         
         if (record.getUserId() != null) {
             sql.SET("user_id = #{userId,jdbcType=INTEGER}");
-        }
-        
-        if (record.getTitle() != null) {
-            sql.SET("title = #{title,jdbcType=VARCHAR}");
         }
         
         if (record.getContent() != null) {

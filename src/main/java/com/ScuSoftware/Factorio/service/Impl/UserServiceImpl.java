@@ -26,13 +26,6 @@ public class UserServiceImpl implements UserService {
     }
     @Override
     public User getUserByID(int id) {
-/*        UserExample userExample = new UserExample();
-        UserExample.Criteria cri = userExample.createCriteria();
-        if (null != username) {
-            cri.andUserNameEqualTo(username);
-        }
-        List<User> userList = userMapper.selectByExample(userExample);
-      //  return userList.get(0);*/
         return userMapper.selectByPrimaryKey(id);
     }
 
@@ -45,8 +38,10 @@ public class UserServiceImpl implements UserService {
     public int register(User user, Member member) {
         if(member!=null) {
             user.setStudentId(member.getStudentId());
+            user.generateToken();
             return memberMapper.insert(member) * userMapper.insert(user);
         }else return register(user);
+
     }
 
     @Override
@@ -58,7 +53,12 @@ public class UserServiceImpl implements UserService {
             cri.andPasswordEqualTo(password);
         }
         List<User> list = userMapper.selectByExample(userExample);
-        return list.size()==1?list.get(0):null;
+        if(list.size()==1){
+            User user = list.get(0);
+            user.generateToken();
+            userMapper.insert(user);
+            return user;
+        }else return null;
     }
 
     @Override
@@ -69,5 +69,14 @@ public class UserServiceImpl implements UserService {
             cri.andEmailEqualTo(email);
         }
        return userMapper.selectByExample(userExample).get(0);
+    }
+
+    @Override
+    public User auth(String accessToken) {
+        UserExample userExample = new UserExample();
+        UserExample.Criteria cri = userExample.createCriteria();
+        cri.andAccessTokenEqualTo(accessToken);
+        List<User> list =  userMapper.selectByExample(userExample);
+        return list.size()==0?null:list.get(0);
     }
 }

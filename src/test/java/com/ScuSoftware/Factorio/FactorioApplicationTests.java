@@ -68,8 +68,10 @@ public class FactorioApplicationTests {
             userService.register(user,member);
 			System.out.println("sssssssssssssss");
 
-		}catch (Exception e){
-			System.out.println("fffffffffffffffff");
+		}catch (RuntimeException e){
+			System.out.println("Message:");
+			System.out.println(e.getMessage());
+
 		}
 	}
 

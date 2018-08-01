@@ -1,13 +1,10 @@
 package com.ScuSoftware.Factorio.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
+import org.apache.commons.lang3.RandomStringUtils;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class User {
-
     private Integer id;
-    @JsonIgnore
+
     private String password;
 
     private String email;
@@ -20,7 +17,13 @@ public class User {
 
     private String studentId;
 
+    private String accessToken;
+
     private String summary;
+
+    public void generateToken() {
+        setAccessToken(RandomStringUtils.randomAlphanumeric(16));
+    }
 
     public Integer getId() {
         return id;
@@ -76,6 +79,14 @@ public class User {
 
     public void setStudentId(String studentId) {
         this.studentId = studentId == null ? null : studentId.trim();
+    }
+
+    public String getAccessToken() {
+        return accessToken;
+    }
+
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken == null ? null : accessToken.trim();
     }
 
     public String getSummary() {

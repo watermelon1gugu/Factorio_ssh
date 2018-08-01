@@ -9,10 +9,11 @@ public interface UserService {
 
      int register(User user) throws InterruptedException;
 
-     int register(User user,Member member) throws InterruptedException;
+     int register(User user,Member member) ;
 
      User login(String email,String password);
 
      User getUserByEmail(String email);
 
+     User auth(String accessToken);
 }

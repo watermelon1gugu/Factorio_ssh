@@ -56,6 +56,10 @@ public class UserSqlProvider {
             sql.VALUES("student_id", "#{studentId,jdbcType=VARCHAR}");
         }
         
+        if (record.getAccessToken() != null) {
+            sql.VALUES("access_token", "#{accessToken,jdbcType=VARCHAR}");
+        }
+        
         if (record.getSummary() != null) {
             sql.VALUES("summary", "#{summary,jdbcType=LONGVARCHAR}");
         }
@@ -76,6 +80,7 @@ public class UserSqlProvider {
         sql.SELECT("is_root");
         sql.SELECT("nick_name");
         sql.SELECT("student_id");
+        sql.SELECT("access_token");
         sql.SELECT("summary");
         sql.FROM("user");
         applyWhere(sql, example, false);
@@ -100,6 +105,7 @@ public class UserSqlProvider {
         sql.SELECT("is_root");
         sql.SELECT("nick_name");
         sql.SELECT("student_id");
+        sql.SELECT("access_token");
         sql.FROM("user");
         applyWhere(sql, example, false);
         
@@ -145,6 +151,10 @@ public class UserSqlProvider {
             sql.SET("student_id = #{record.studentId,jdbcType=VARCHAR}");
         }
         
+        if (record.getAccessToken() != null) {
+            sql.SET("access_token = #{record.accessToken,jdbcType=VARCHAR}");
+        }
+        
         if (record.getSummary() != null) {
             sql.SET("summary = #{record.summary,jdbcType=LONGVARCHAR}");
         }
@@ -164,6 +174,7 @@ public class UserSqlProvider {
         sql.SET("is_root = #{record.isRoot,jdbcType=BIT}");
         sql.SET("nick_name = #{record.nickName,jdbcType=VARCHAR}");
         sql.SET("student_id = #{record.studentId,jdbcType=VARCHAR}");
+        sql.SET("access_token = #{record.accessToken,jdbcType=VARCHAR}");
         sql.SET("summary = #{record.summary,jdbcType=LONGVARCHAR}");
         
         UserExample example = (UserExample) parameter.get("example");
@@ -182,6 +193,7 @@ public class UserSqlProvider {
         sql.SET("is_root = #{record.isRoot,jdbcType=BIT}");
         sql.SET("nick_name = #{record.nickName,jdbcType=VARCHAR}");
         sql.SET("student_id = #{record.studentId,jdbcType=VARCHAR}");
+        sql.SET("access_token = #{record.accessToken,jdbcType=VARCHAR}");
         
         UserExample example = (UserExample) parameter.get("example");
         applyWhere(sql, example, true);
@@ -214,6 +226,10 @@ public class UserSqlProvider {
         
         if (record.getStudentId() != null) {
             sql.SET("student_id = #{studentId,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getAccessToken() != null) {
+            sql.SET("access_token = #{accessToken,jdbcType=VARCHAR}");
         }
         
         if (record.getSummary() != null) {

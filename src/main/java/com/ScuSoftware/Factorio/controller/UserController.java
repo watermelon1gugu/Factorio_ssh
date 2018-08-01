@@ -31,19 +31,15 @@ public class UserController {
         this.userService = userService;
         this.memberService = memberService;
     }
-//TODO 改为ControllerAdvice
+
     @PostMapping(value = "register")
     public Response register(@RequestBody RegisterRequest registerRequest, HttpSession session) {
             registerRequest.print();
         if (session.getAttribute("_code") != null && session.getAttribute("_code").equals(registerRequest.getCheckCode())) {
             User user = registerRequest.formatToUser();
             Member member = registerRequest.formatToMember();
-                try {
                     userService.register(user,member);
                     return new Response<>(200, "注册成功");
-                }catch (Exception e){
-                    return new Response<>(500, "注册失败");
-                }
         } else return new Response<>(501, "验证码错误");
     }
 
@@ -59,6 +55,14 @@ public class UserController {
         } else return new Response<>(501, "验证码错误");
     }
 
+    @PostMapping(value = "auth")
+    public Response login(@CookieValue("accessToken") String accessToken, HttpServletResponse response) {
+        User user = userService.auth(accessToken);
+        if (user != null) {
+            return new Response<>(200, user);
+        }
+        return new Response<>(500, "登录已过期，请重新登录");
+    }
     @GetMapping(value = "authCode")
     public void getAuthCode(HttpSession session, HttpServletResponse response) throws IOException {
         response.setContentType("image/jpeg");
@@ -66,7 +70,6 @@ public class UserController {
         session.setAttribute("_code", verifyCode);
         VerifyCodeUtils.outputImage(80, 50, response.getOutputStream(), verifyCode);
     }
-
 }
 
 

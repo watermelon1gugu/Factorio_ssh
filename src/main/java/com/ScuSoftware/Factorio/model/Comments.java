@@ -9,8 +9,6 @@ public class Comments {
 
     private Integer userId;
 
-    private String title;
-
     private String content;
 
     public Integer getId() {
@@ -35,14 +33,6 @@ public class Comments {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title == null ? null : title.trim();
     }
 
     public String getContent() {

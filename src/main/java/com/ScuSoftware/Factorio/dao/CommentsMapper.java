@@ -3,13 +3,19 @@ package com.ScuSoftware.Factorio.dao;
 import com.ScuSoftware.Factorio.model.Comments;
 import com.ScuSoftware.Factorio.model.CommentsExample;
 import java.util.List;
-
-import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.DeleteProvider;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.InsertProvider;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectProvider;
+import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.UpdateProvider;
 import org.apache.ibatis.type.JdbcType;
-import org.springframework.stereotype.Component;
 
-@Component
-@Mapper
 public interface CommentsMapper {
     @SelectProvider(type=CommentsSqlProvider.class, method="countByExample")
     long countByExample(CommentsExample example);
@@ -25,9 +31,9 @@ public interface CommentsMapper {
 
     @Insert({
         "insert into comments (id, comments_date, ",
-        "user_id, title, content)",
+        "user_id, content)",
         "values (#{id,jdbcType=INTEGER}, #{commentsDate,jdbcType=DATE}, ",
-        "#{userId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR})"
+        "#{userId,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR})"
     })
     int insert(Comments record);
 
@@ -39,7 +45,6 @@ public interface CommentsMapper {
         @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
         @Result(column="comments_date", property="commentsDate", jdbcType=JdbcType.DATE),
         @Result(column="user_id", property="userId", jdbcType=JdbcType.INTEGER),
-        @Result(column="title", property="title", jdbcType=JdbcType.VARCHAR),
         @Result(column="content", property="content", jdbcType=JdbcType.LONGVARCHAR)
     })
     List<Comments> selectByExampleWithBLOBs(CommentsExample example);
@@ -48,14 +53,13 @@ public interface CommentsMapper {
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
         @Result(column="comments_date", property="commentsDate", jdbcType=JdbcType.DATE),
-        @Result(column="user_id", property="userId", jdbcType=JdbcType.INTEGER),
-        @Result(column="title", property="title", jdbcType=JdbcType.VARCHAR)
+        @Result(column="user_id", property="userId", jdbcType=JdbcType.INTEGER)
     })
     List<Comments> selectByExample(CommentsExample example);
 
     @Select({
         "select",
-        "id, comments_date, user_id, title, content",
+        "id, comments_date, user_id, content",
         "from comments",
         "where id = #{id,jdbcType=INTEGER}"
     })
@@ -63,7 +67,6 @@ public interface CommentsMapper {
         @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
         @Result(column="comments_date", property="commentsDate", jdbcType=JdbcType.DATE),
         @Result(column="user_id", property="userId", jdbcType=JdbcType.INTEGER),
-        @Result(column="title", property="title", jdbcType=JdbcType.VARCHAR),
         @Result(column="content", property="content", jdbcType=JdbcType.LONGVARCHAR)
     })
     Comments selectByPrimaryKey(Integer id);
@@ -84,7 +87,6 @@ public interface CommentsMapper {
         "update comments",
         "set comments_date = #{commentsDate,jdbcType=DATE},",
           "user_id = #{userId,jdbcType=INTEGER},",
-          "title = #{title,jdbcType=VARCHAR},",
           "content = #{content,jdbcType=LONGVARCHAR}",
         "where id = #{id,jdbcType=INTEGER}"
     })
@@ -93,8 +95,7 @@ public interface CommentsMapper {
     @Update({
         "update comments",
         "set comments_date = #{commentsDate,jdbcType=DATE},",
-          "user_id = #{userId,jdbcType=INTEGER},",
-          "title = #{title,jdbcType=VARCHAR}",
+          "user_id = #{userId,jdbcType=INTEGER}",
         "where id = #{id,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(Comments record);

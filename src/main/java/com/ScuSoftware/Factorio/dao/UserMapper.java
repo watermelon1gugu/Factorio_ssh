@@ -27,11 +27,11 @@ public interface UserMapper {
         "insert into user (id, password, ",
         "email, enable, is_root, ",
         "nick_name, student_id, ",
-        "summary)",
+        "access_token, summary)",
         "values (#{id,jdbcType=INTEGER}, #{password,jdbcType=VARCHAR}, ",
         "#{email,jdbcType=VARCHAR}, #{enable,jdbcType=BIT}, #{isRoot,jdbcType=BIT}, ",
         "#{nickName,jdbcType=VARCHAR}, #{studentId,jdbcType=VARCHAR}, ",
-        "#{summary,jdbcType=LONGVARCHAR})"
+        "#{accessToken,jdbcType=VARCHAR}, #{summary,jdbcType=LONGVARCHAR})"
     })
     int insert(User record);
 
@@ -47,6 +47,7 @@ public interface UserMapper {
         @Result(column="is_root", property="isRoot", jdbcType=JdbcType.BIT),
         @Result(column="nick_name", property="nickName", jdbcType=JdbcType.VARCHAR),
         @Result(column="student_id", property="studentId", jdbcType=JdbcType.VARCHAR),
+        @Result(column="access_token", property="accessToken", jdbcType=JdbcType.VARCHAR),
         @Result(column="summary", property="summary", jdbcType=JdbcType.LONGVARCHAR)
     })
     List<User> selectByExampleWithBLOBs(UserExample example);
@@ -59,13 +60,14 @@ public interface UserMapper {
         @Result(column="enable", property="enable", jdbcType=JdbcType.BIT),
         @Result(column="is_root", property="isRoot", jdbcType=JdbcType.BIT),
         @Result(column="nick_name", property="nickName", jdbcType=JdbcType.VARCHAR),
-        @Result(column="student_id", property="studentId", jdbcType=JdbcType.VARCHAR)
+        @Result(column="student_id", property="studentId", jdbcType=JdbcType.VARCHAR),
+        @Result(column="access_token", property="accessToken", jdbcType=JdbcType.VARCHAR)
     })
     List<User> selectByExample(UserExample example);
 
     @Select({
         "select",
-        "id, password, email, enable, is_root, nick_name, student_id, summary",
+        "id, password, email, enable, is_root, nick_name, student_id, access_token, summary",
         "from user",
         "where id = #{id,jdbcType=INTEGER}"
     })
@@ -77,6 +79,7 @@ public interface UserMapper {
         @Result(column="is_root", property="isRoot", jdbcType=JdbcType.BIT),
         @Result(column="nick_name", property="nickName", jdbcType=JdbcType.VARCHAR),
         @Result(column="student_id", property="studentId", jdbcType=JdbcType.VARCHAR),
+        @Result(column="access_token", property="accessToken", jdbcType=JdbcType.VARCHAR),
         @Result(column="summary", property="summary", jdbcType=JdbcType.LONGVARCHAR)
     })
     User selectByPrimaryKey(Integer id);
@@ -101,6 +104,7 @@ public interface UserMapper {
           "is_root = #{isRoot,jdbcType=BIT},",
           "nick_name = #{nickName,jdbcType=VARCHAR},",
           "student_id = #{studentId,jdbcType=VARCHAR},",
+          "access_token = #{accessToken,jdbcType=VARCHAR},",
           "summary = #{summary,jdbcType=LONGVARCHAR}",
         "where id = #{id,jdbcType=INTEGER}"
     })
@@ -113,7 +117,8 @@ public interface UserMapper {
           "enable = #{enable,jdbcType=BIT},",
           "is_root = #{isRoot,jdbcType=BIT},",
           "nick_name = #{nickName,jdbcType=VARCHAR},",
-          "student_id = #{studentId,jdbcType=VARCHAR}",
+          "student_id = #{studentId,jdbcType=VARCHAR},",
+          "access_token = #{accessToken,jdbcType=VARCHAR}",
         "where id = #{id,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(User record);

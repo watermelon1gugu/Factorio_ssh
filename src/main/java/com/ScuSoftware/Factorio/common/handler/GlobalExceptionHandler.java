@@ -30,8 +30,7 @@ public class GlobalExceptionHandler {
     @ResponseBody
     Response handleException(Exception e){
         LOGGER.error(e.getMessage(), e);
-        Response response = new Response();
-        response.setData("操作失败！");
+        Response response = new Response(500,"操作失败");
         return response;
     }
 
