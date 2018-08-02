@@ -13,7 +13,7 @@ public class RegisterRequest {
     private String checkCode;
     private String studentID;
     private String name;
-    private String passWordAgain;
+    private String passwordAgain;
     private boolean isMember;
     private boolean sex;
 
@@ -28,12 +28,12 @@ public class RegisterRequest {
         System.out.println(isMember);
     }
 
-    public String getPassWordAgain() {
-        return passWordAgain;
+    public String getPasswordAgain() {
+        return passwordAgain;
     }
 
-    public void setPassWordAgain(String passWordAgain) {
-        this.passWordAgain = passWordAgain;
+    public void setPasswordAgain(String passwordAgain) {
+        this.passwordAgain = passwordAgain;
     }
 
     public void setMember(boolean member) {

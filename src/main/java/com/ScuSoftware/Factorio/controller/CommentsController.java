@@ -19,12 +19,12 @@ public class CommentsController {
         this.commentsService = commentsService;
     }
 
-    @GetMapping("all")
+    @GetMapping("comments")
     public Response listOfComments( HttpSession session){
         return new Response(200,commentsService.getAllComments());
     }
 
-    @PostMapping("post")
+    @PostMapping("comments")
     public Response postComment(@RequestBody CommentsRequest commentsRequest,HttpSession session){
         Comments comments = commentsRequest.formatToComments();
         if(commentsService.insertComment(comments)!=0){

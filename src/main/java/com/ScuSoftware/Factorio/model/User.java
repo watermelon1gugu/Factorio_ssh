@@ -1,10 +1,13 @@
 package com.ScuSoftware.Factorio.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.apache.commons.lang3.RandomStringUtils;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class User {
     private Integer id;
-
+    @JsonIgnore
     private String password;
 
     private String email;
