@@ -24,6 +24,7 @@ public class AnnounceController {
     }
     @GetMapping("list")
     public Response getAllAnnounces(HttpSession session){
+        System.out.println("被请求");
         return new Response(200,announceService.getAllAnnounce());
     }
 }

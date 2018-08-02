@@ -5,7 +5,7 @@ import java.util.Date;
 public class Announce {
     private Integer id;
 
-    private String titile;
+    private String title;
 
     private Date releaseDate;
 
@@ -21,12 +21,12 @@ public class Announce {
         this.id = id;
     }
 
-    public String getTitile() {
-        return titile;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTitile(String titile) {
-        this.titile = titile == null ? null : titile.trim();
+    public void setTitle(String title) {
+        this.title = title == null ? null : title.trim();
     }
 
     public Date getReleaseDate() {

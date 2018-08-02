@@ -24,9 +24,9 @@ public interface AnnounceMapper {
     int deleteByPrimaryKey(Integer id);
 
     @Insert({
-        "insert into announce (id, titile, ",
+        "insert into announce (id, title, ",
         "release_date, enabled, content)",
-        "values (#{id,jdbcType=INTEGER}, #{titile,jdbcType=VARCHAR}, ",
+        "values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, ",
         "#{releaseDate,jdbcType=DATE}, #{enabled,jdbcType=BIT}, #{content,jdbcType=LONGVARCHAR})"
     })
     int insert(Announce record);
@@ -37,7 +37,7 @@ public interface AnnounceMapper {
     @SelectProvider(type=AnnounceSqlProvider.class, method="selectByExampleWithBLOBs")
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
-        @Result(column="titile", property="titile", jdbcType=JdbcType.VARCHAR),
+        @Result(column="title", property="title", jdbcType=JdbcType.VARCHAR),
         @Result(column="release_date", property="releaseDate", jdbcType=JdbcType.DATE),
         @Result(column="enabled", property="enabled", jdbcType=JdbcType.BIT),
         @Result(column="content", property="content", jdbcType=JdbcType.LONGVARCHAR)
@@ -47,7 +47,7 @@ public interface AnnounceMapper {
     @SelectProvider(type=AnnounceSqlProvider.class, method="selectByExample")
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
-        @Result(column="titile", property="titile", jdbcType=JdbcType.VARCHAR),
+        @Result(column="title", property="title", jdbcType=JdbcType.VARCHAR),
         @Result(column="release_date", property="releaseDate", jdbcType=JdbcType.DATE),
         @Result(column="enabled", property="enabled", jdbcType=JdbcType.BIT)
     })
@@ -55,13 +55,13 @@ public interface AnnounceMapper {
 
     @Select({
         "select",
-        "id, titile, release_date, enabled, content",
+        "id, title, release_date, enabled, content",
         "from announce",
         "where id = #{id,jdbcType=INTEGER}"
     })
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
-        @Result(column="titile", property="titile", jdbcType=JdbcType.VARCHAR),
+        @Result(column="title", property="title", jdbcType=JdbcType.VARCHAR),
         @Result(column="release_date", property="releaseDate", jdbcType=JdbcType.DATE),
         @Result(column="enabled", property="enabled", jdbcType=JdbcType.BIT),
         @Result(column="content", property="content", jdbcType=JdbcType.LONGVARCHAR)
@@ -82,7 +82,7 @@ public interface AnnounceMapper {
 
     @Update({
         "update announce",
-        "set titile = #{titile,jdbcType=VARCHAR},",
+        "set title = #{title,jdbcType=VARCHAR},",
           "release_date = #{releaseDate,jdbcType=DATE},",
           "enabled = #{enabled,jdbcType=BIT},",
           "content = #{content,jdbcType=LONGVARCHAR}",
@@ -92,7 +92,7 @@ public interface AnnounceMapper {
 
     @Update({
         "update announce",
-        "set titile = #{titile,jdbcType=VARCHAR},",
+        "set title = #{title,jdbcType=VARCHAR},",
           "release_date = #{releaseDate,jdbcType=DATE},",
           "enabled = #{enabled,jdbcType=BIT}",
         "where id = #{id,jdbcType=INTEGER}"

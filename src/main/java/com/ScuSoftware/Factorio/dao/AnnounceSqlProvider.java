@@ -32,8 +32,8 @@ public class AnnounceSqlProvider {
             sql.VALUES("id", "#{id,jdbcType=INTEGER}");
         }
         
-        if (record.getTitile() != null) {
-            sql.VALUES("titile", "#{titile,jdbcType=VARCHAR}");
+        if (record.getTitle() != null) {
+            sql.VALUES("title", "#{title,jdbcType=VARCHAR}");
         }
         
         if (record.getReleaseDate() != null) {
@@ -58,7 +58,7 @@ public class AnnounceSqlProvider {
         } else {
             sql.SELECT("id");
         }
-        sql.SELECT("titile");
+        sql.SELECT("title");
         sql.SELECT("release_date");
         sql.SELECT("enabled");
         sql.SELECT("content");
@@ -79,7 +79,7 @@ public class AnnounceSqlProvider {
         } else {
             sql.SELECT("id");
         }
-        sql.SELECT("titile");
+        sql.SELECT("title");
         sql.SELECT("release_date");
         sql.SELECT("enabled");
         sql.FROM("announce");
@@ -103,8 +103,8 @@ public class AnnounceSqlProvider {
             sql.SET("id = #{record.id,jdbcType=INTEGER}");
         }
         
-        if (record.getTitile() != null) {
-            sql.SET("titile = #{record.titile,jdbcType=VARCHAR}");
+        if (record.getTitle() != null) {
+            sql.SET("title = #{record.title,jdbcType=VARCHAR}");
         }
         
         if (record.getReleaseDate() != null) {
@@ -128,7 +128,7 @@ public class AnnounceSqlProvider {
         sql.UPDATE("announce");
         
         sql.SET("id = #{record.id,jdbcType=INTEGER}");
-        sql.SET("titile = #{record.titile,jdbcType=VARCHAR}");
+        sql.SET("title = #{record.title,jdbcType=VARCHAR}");
         sql.SET("release_date = #{record.releaseDate,jdbcType=DATE}");
         sql.SET("enabled = #{record.enabled,jdbcType=BIT}");
         sql.SET("content = #{record.content,jdbcType=LONGVARCHAR}");
@@ -143,7 +143,7 @@ public class AnnounceSqlProvider {
         sql.UPDATE("announce");
         
         sql.SET("id = #{record.id,jdbcType=INTEGER}");
-        sql.SET("titile = #{record.titile,jdbcType=VARCHAR}");
+        sql.SET("title = #{record.title,jdbcType=VARCHAR}");
         sql.SET("release_date = #{record.releaseDate,jdbcType=DATE}");
         sql.SET("enabled = #{record.enabled,jdbcType=BIT}");
         
@@ -156,8 +156,8 @@ public class AnnounceSqlProvider {
         SQL sql = new SQL();
         sql.UPDATE("announce");
         
-        if (record.getTitile() != null) {
-            sql.SET("titile = #{titile,jdbcType=VARCHAR}");
+        if (record.getTitle() != null) {
+            sql.SET("title = #{title,jdbcType=VARCHAR}");
         }
         
         if (record.getReleaseDate() != null) {

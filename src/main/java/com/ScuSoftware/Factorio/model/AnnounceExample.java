@@ -192,73 +192,73 @@ public class AnnounceExample {
             return (Criteria) this;
         }
 
-        public Criteria andTitileIsNull() {
-            addCriterion("titile is null");
+        public Criteria andTitleIsNull() {
+            addCriterion("title is null");
             return (Criteria) this;
         }
 
-        public Criteria andTitileIsNotNull() {
-            addCriterion("titile is not null");
+        public Criteria andTitleIsNotNull() {
+            addCriterion("title is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTitileEqualTo(String value) {
-            addCriterion("titile =", value, "titile");
+        public Criteria andTitleEqualTo(String value) {
+            addCriterion("title =", value, "title");
             return (Criteria) this;
         }
 
-        public Criteria andTitileNotEqualTo(String value) {
-            addCriterion("titile <>", value, "titile");
+        public Criteria andTitleNotEqualTo(String value) {
+            addCriterion("title <>", value, "title");
             return (Criteria) this;
         }
 
-        public Criteria andTitileGreaterThan(String value) {
-            addCriterion("titile >", value, "titile");
+        public Criteria andTitleGreaterThan(String value) {
+            addCriterion("title >", value, "title");
             return (Criteria) this;
         }
 
-        public Criteria andTitileGreaterThanOrEqualTo(String value) {
-            addCriterion("titile >=", value, "titile");
+        public Criteria andTitleGreaterThanOrEqualTo(String value) {
+            addCriterion("title >=", value, "title");
             return (Criteria) this;
         }
 
-        public Criteria andTitileLessThan(String value) {
-            addCriterion("titile <", value, "titile");
+        public Criteria andTitleLessThan(String value) {
+            addCriterion("title <", value, "title");
             return (Criteria) this;
         }
 
-        public Criteria andTitileLessThanOrEqualTo(String value) {
-            addCriterion("titile <=", value, "titile");
+        public Criteria andTitleLessThanOrEqualTo(String value) {
+            addCriterion("title <=", value, "title");
             return (Criteria) this;
         }
 
-        public Criteria andTitileLike(String value) {
-            addCriterion("titile like", value, "titile");
+        public Criteria andTitleLike(String value) {
+            addCriterion("title like", value, "title");
             return (Criteria) this;
         }
 
-        public Criteria andTitileNotLike(String value) {
-            addCriterion("titile not like", value, "titile");
+        public Criteria andTitleNotLike(String value) {
+            addCriterion("title not like", value, "title");
             return (Criteria) this;
         }
 
-        public Criteria andTitileIn(List<String> values) {
-            addCriterion("titile in", values, "titile");
+        public Criteria andTitleIn(List<String> values) {
+            addCriterion("title in", values, "title");
             return (Criteria) this;
         }
 
-        public Criteria andTitileNotIn(List<String> values) {
-            addCriterion("titile not in", values, "titile");
+        public Criteria andTitleNotIn(List<String> values) {
+            addCriterion("title not in", values, "title");
             return (Criteria) this;
         }
 
-        public Criteria andTitileBetween(String value1, String value2) {
-            addCriterion("titile between", value1, value2, "titile");
+        public Criteria andTitleBetween(String value1, String value2) {
+            addCriterion("title between", value1, value2, "title");
             return (Criteria) this;
         }
 
-        public Criteria andTitileNotBetween(String value1, String value2) {
-            addCriterion("titile not between", value1, value2, "titile");
+        public Criteria andTitleNotBetween(String value1, String value2) {
+            addCriterion("title not between", value1, value2, "title");
             return (Criteria) this;
         }
 
