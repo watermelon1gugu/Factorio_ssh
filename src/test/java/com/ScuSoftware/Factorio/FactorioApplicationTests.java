@@ -6,10 +6,7 @@ import com.ScuSoftware.Factorio.dao.MemberMapper;
 import com.ScuSoftware.Factorio.dao.UserMapper;
 import com.ScuSoftware.Factorio.dto.RegisterRequest;
 import com.ScuSoftware.Factorio.dto.Response;
-import com.ScuSoftware.Factorio.model.Comments;
-import com.ScuSoftware.Factorio.model.CommentsExample;
-import com.ScuSoftware.Factorio.model.Member;
-import com.ScuSoftware.Factorio.model.User;
+import com.ScuSoftware.Factorio.model.*;
 import com.ScuSoftware.Factorio.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,11 +35,15 @@ public class FactorioApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		List<Comments> list = commentsMapper.selectByExampleWithBLOBs(commentsExample);
-		for(Comments comments:list){
-			System.out.println("id:"+comments.getId()+"content:"+comments.getContent());
-		}
-
+		/*UserExample userExample = new UserExample();
+		UserExample.Criteria cri = userExample.createCriteria();*/
+		String email = "843874092@qq.com";
+		String password = "chenyi456";
+/*		cri.andEmailEqualTo(email);
+		cri.andPasswordEqualTo(password);*/
+		/*List<User> list = userMapper.selectByExample(userExample);*/
+		User user = userService.login(email,password);
+		System.out.println(user.getAccessToken());
 	}
 
 

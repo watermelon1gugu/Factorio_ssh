@@ -30,7 +30,7 @@ public class CommentsServiceImpl implements CommentsService {
 
     @Override
     public List<Comments> getAllComments() {
-        return commentsMapper.selectByExample(new CommentsExample());
+        return commentsMapper.selectByExampleWithBLOBs(new CommentsExample());
     }
 
     @Override

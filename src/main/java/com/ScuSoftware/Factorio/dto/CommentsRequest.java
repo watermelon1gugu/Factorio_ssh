@@ -28,9 +28,7 @@ public class CommentsRequest {
         this.content = content;
     }
 
-
-
-    public Comments formatToComments(){
+    public Comments formatToComments() {
         Comments comments = new Comments();
         comments.setContent(this.content);
         comments.setUserId(this.userID);
